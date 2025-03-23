@@ -1,43 +1,56 @@
 import { parseData } from "./app/parseFile";
 
-type lastDateType = {
-  date: any;
-  conflicts: number;
-  indices: Object[];
+type IndexType = {
+  index0: number;
+  index1: number;
 };
 
-let dates: string[] = [];
-let hour: string[] = [];
-let minute: string[] = [];
-let lastDate: lastDateType = {
-  date: { date: "", index: 0 },
-  conflicts: 0,
-  indices: [],
+type ConflictResult = {
+  totalConflicts: number;
+  conflictIndices: IndexType[];
 };
 
-const data: any = await parseData("./data/schedules/schedule.json");
-if (data.hasOwnProperty("code")) throw console.error(data);
+async function detectConflicts(): Promise<ConflictResult> {
+  const data: any = await parseData("./data/schedules/schedule.json");
+  if (data.hasOwnProperty("code")) throw console.error(data);
 
-data.events.forEach((e) => {
-  dates.push(e.date);
-  hour.push(e.hour);
-  minute.push(e.minute);
-});
+  const dateArray: string[] = [];
+  const hourArray: string[] = [];
+  const minuteArray: string[] = [];
+  const conflicts: ConflictResult = {
+    totalConflicts: 0,
+    conflictIndices: [],
+  };
 
-for (const e of dates) {
-  if (!lastDate.date.date) {
-    lastDate.date.date = e; // @ts-ignore
-    lastDate.date.index = dates.findIndex(e);
-    continue;
+  // Populate arrays with event data
+  data.events.forEach((e: any) => {
+    dateArray.push(e.date);
+    hourArray.push(e.hour);
+    minuteArray.push(e.minute);
+  });
+
+  // Detect conflicts
+  for (let i = 0; i < dateArray.length; i++) {
+    for (let j = i + 1; j < dateArray.length; j++) {
+      if (
+        dateArray[i] === dateArray[j] && // Same date
+        hourArray[i] === hourArray[j] && // Same hour
+        minuteArray[i] === minuteArray[j] // Same minute
+      ) {
+        conflicts.totalConflicts += 1;
+        conflicts.conflictIndices.push({ index0: i, index1: j });
+      }
+    }
   }
-  if (lastDate.date.date == e) {
-    lastDate.conflicts += 1;
-    lastDate.indices.push({
-      // @ts-ignore
-      index0: dates.findIndex(e),
-      index1: lastDate.date.index,
-    });
-  }
 
-  lastDate.date.date = e;
+  return conflicts;
 }
+
+// Run the conflict detection and log the results
+detectConflicts()
+  .then((result) => {
+    console.log("Conflict Detection Result:", result);
+  })
+  .catch((error) => {
+    console.error("Error detecting conflicts:", error);
+  });
