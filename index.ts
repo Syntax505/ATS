@@ -1,4 +1,5 @@
 import { detectConflicts } from "./app/countConflicts";
+import { findFreeSession } from "./app/findFreeSession";
 
 // Run the conflict detection and log the results
 detectConflicts()
@@ -8,3 +9,5 @@ detectConflicts()
   .catch((error) => {
     console.error("Error detecting conflicts:", error);
   });
+
+findFreeSession()
