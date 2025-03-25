@@ -4,61 +4,71 @@
             "date": "03/03/2025",
             "hour": "23",
             "minute": "05",
-            "title": "Art Exhibition"
+            "title": "Art Exhibition",
+            "duration": 180
         },
         {
             "date": "20/02/2025",
             "hour": "05",
             "minute": "32",
-            "title": "Music Festival"
+            "title": "Music Festival",
+            "duration": 240
         },
         {
             "date": "03/03/2025",
             "hour": "23",
             "minute": "05",
-            "title": "Exploring Geography"
+            "title": "Exploring Geography",
+            "duration": 60
         },
         {
             "date": "27/02/2025",
             "hour": "15",
             "minute": "29",
-            "title": "Coding Bootcamp"
+            "title": "Coding Bootcamp",
+            "duration": 60
         },
         {
             "date": "17/03/2025",
             "hour": "17",
             "minute": "55",
-            "title": "History Lecture"
+            "title": "History Lecture",
+            "duration": 120
         },
         {
             "date": "26/02/2025",
             "hour": "13",
             "minute": "14",
-            "title": "Exploring Geography"
+            "title": "Exploring Geography",
+            "duration": 120
         },
         {
             "date": "28/02/2025",
             "hour": "18",
             "minute": "19",
-            "title": "Music Festival"
+            "title": "Music Festival",
+            "duration": 300
         },
         {
             "date": "03/03/2025",
             "hour": "19",
             "minute": "41",
-            "title": "Mathematics Workshop"
+            "title": "Mathematics Workshop",
+            "duration": 30
         },
         {
             "date": "19/02/2025",
             "hour": "06",
             "minute": "05",
-            "title": "Science Fair"
+            "title": "Science Fair",
+            "duration": 60
         },
         {
             "date": "27/02/2025",
             "hour": "03",
             "minute": "25",
-            "title": "History Lecture"
+            "title": "History Lecture",
+            "duration": 45
         }
     ]
 }
