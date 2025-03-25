@@ -1,16 +1,11 @@
-import { parseData } from "./parseFile";
-
 type freeSession = {
-    time: {date: "", hour: "", minute: ""}
-}
+  time: { date: ""; hour: ""; minute: "" };
+};
 
-export async function findFreeSession(): Promise<freeSession> {
-     const data: any = await parseData("./data/schedules/schedule.json");
-      if (data.hasOwnProperty("code")) throw console.error(data);
+export async function findFreeSession(data, conflict): Promise<freeSession> {
+  const sessionToReturn: freeSession = {
+    time: { date: "", hour: "", minute: "" },
+  };
 
-const sessionToReturn : freeSession = {
-    time: {date: "", hour: "", minute: ""}
-} 
-
-return sessionToReturn
+  return sessionToReturn;
 }
