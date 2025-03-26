@@ -21,7 +21,7 @@ detectConflicts(data)
     if (conflictingIndices.length > 0) {
       conflictingIndices.forEach((conflict) => {
       findFreeSession(data, conflict).then((result) => {
-        console.log("Free Session Result:", result);
+        console.log(`Free Session Result:`, result);
       });
     });
     }
