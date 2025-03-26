@@ -1,7 +1,7 @@
-import { detectConflicts } from "./app/countConflicts";
-import { findFreeSession } from "./app/findFreeSession";
-import { parseData } from "./app/parseFile";
-import { writeData } from "./app/writeFile";
+import { detectConflicts } from "./app/systems/countConflicts";
+import { findFreeSession } from "./app/systems/findFreeSession";
+import { parseData } from "./app/systems/parseFile";
+import { writeData } from "./app/systems/writeFile";
 
 type dataWriteType = {
   index: number;
