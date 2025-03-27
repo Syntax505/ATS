@@ -1,4 +1,5 @@
 import React from 'react';
+import './globals.css';
 
 export default function RootLayout({
     children,
@@ -7,7 +8,15 @@ export default function RootLayout({
   }) {
     return (
       <html lang="en">
-        <body>{children}</body>
+        <head>
+          <title>ATS</title>
+          <meta name="description" content="Automatic Timetabling System"></meta>
+        </head>
+        <body>
+          <div className="w-dvw h-dvh bg-gray-950">
+          {children}
+          </div>
+          </body>
       </html>
     )
   }
