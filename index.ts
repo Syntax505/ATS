@@ -1,6 +1,5 @@
 import { detectConflicts } from "./app/systems/countConflicts";
 import { findFreeSession } from "./app/systems/findFreeSession";
-import { parseData } from "./app/systems/parseFile";
 import { writeData } from "./app/systems/writeFile";
 
 type dataWriteType = {
@@ -12,13 +11,11 @@ type dataWriteType = {
   };
 };
 
+export async function run(data) {
+
 const conflictingIndices: Object[] = [];
 let dataToWrite: dataWriteType[] = [];
 
-const data: any = await parseData("./data/schedules/schedule.json");
-if (data.hasOwnProperty("code")) throw console.error(data);
-
-// Run the conflict detection and log the results
 detectConflicts(data)
   .then(async (result) => {
     console.log("Conflict Detection Result:", result);
@@ -30,7 +27,7 @@ detectConflicts(data)
 
       if (conflictingIndices.length > 0) {
         conflictingIndices.forEach((conflict) => {
-          findFreeSession(data, conflict).then((result) => {
+          findFreeSession(data, conflict).then(async (result) => {
             console.log(`Free Session Result:`, result);
             // @ts-ignore
             dataToWrite.push({ index: conflict.index1, time: result.time });
@@ -40,8 +37,20 @@ detectConflicts(data)
               conflictingIndices.length - 1
             ) {
               try {
-                writeData("./data/schedules/schedule.json", data, dataToWrite);
-                console.log("Data written successfully!");
+               writeData(data, dataToWrite).then((url) => {
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = "schedule.json";
+                  document.body.appendChild(a);
+                  a.click();
+                  document.body.removeChild(a);
+                  URL.revokeObjectURL(url);
+                  const button = document.getElementById("buttonToAnimate") as HTMLElement;
+                  button.innerText = "File Downloaded!";
+                })
+                  .catch((err) => {
+                    console.error("Error writing data:", err);
+                  });
               } catch (err) {
                 console.error(err);
               }
@@ -54,3 +63,6 @@ detectConflicts(data)
   .catch((error) => {
     console.error("Error detecting conflicts:", error);
   });
+
+
+}

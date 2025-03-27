@@ -1,6 +1,4 @@
-import { writeFileSync } from "fs";
-
-export async function writeData(path: string, data: any, dataToWrite: any) {
+ export async function writeData(data: any, dataToWrite: any) {
   try {
     console.log("Writing..");
     dataToWrite.forEach((d) => {
@@ -8,8 +6,10 @@ export async function writeData(path: string, data: any, dataToWrite: any) {
       data.events[d.index].hour = d.time.hour;
       data.events[d.index].minute = d.time.minute;
     });
-    writeFileSync(path, JSON.stringify(data));
-    return true;
+    const jsonString = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonString], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    return url;
   } catch (err) {
     return err;
   }

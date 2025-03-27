@@ -13,9 +13,7 @@ export default function RootLayout({
           <meta name="description" content="Automatic Timetabling System"></meta>
         </head>
         <body>
-          <div className="w-dvw h-dvh bg-gray-950">
           {children}
-          </div>
           </body>
       </html>
     )
