@@ -13,6 +13,8 @@ type dataWriteType = {
 
 export async function run(data) {
 
+  console.log("Called");
+
 const conflictingIndices: Object[] = [];
 let dataToWrite: dataWriteType[] = [];
 
@@ -37,20 +39,7 @@ detectConflicts(data)
               conflictingIndices.length - 1
             ) {
               try {
-               writeData(data, dataToWrite).then((url) => {
-                  const a = document.createElement("a");
-                  a.href = url;
-                  a.download = "schedule.json";
-                  document.body.appendChild(a);
-                  a.click();
-                  document.body.removeChild(a);
-                  URL.revokeObjectURL(url);
-                  const button = document.getElementById("buttonToAnimate") as HTMLElement;
-                  button.innerText = "File Downloaded!";
-                })
-                  .catch((err) => {
-                    console.error("Error writing data:", err);
-                  });
+               readyToWrite(data, dataToWrite);
               } catch (err) {
                 console.error(err);
               }
@@ -58,11 +47,35 @@ detectConflicts(data)
           });
         });
       }
+    } else {
+      try {
+        readyToWrite(data, dataToWrite);
+       } catch (err) {
+         console.error(err);
+       }
     }
-  })
+  }) 
   .catch((error) => {
     console.error("Error detecting conflicts:", error);
   });
 
 
+}
+
+
+function readyToWrite(data, dataToWrite) {
+  writeData(data, dataToWrite).then((url) => {
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "schedule.pdf";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+    const button = document.getElementById("buttonToAnimate") as HTMLElement;
+    button.innerText = "File Downloaded!";
+  })
+    .catch((err) => {
+      console.error("Error writing data:", err);
+    });
 }

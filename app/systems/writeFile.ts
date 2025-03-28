@@ -5,22 +5,37 @@
   try {
     console.log("Writing..");
     let bodyArray: string[][] = [];
+    let sortArray: Object[] = [];
     dataToWrite.forEach((d) => {
       data.events[d.index].date = d.time.date;
       data.events[d.index].hour = d.time.hour;
       data.events[d.index].minute = d.time.minute;
     });
-    data.events.forEach((e) => {
-      bodyArray.push([e.title, e.date, e.hour + ":" + e.minute]);
+    data.events.forEach((e, x)=> {
+      sortArray.push({index: x, value: e, date: Date.parse(
+        e.date + "T" + e.hour + ":" + e.minute + ":00")});
     });
-    const date = new Date()
+    // @ts-ignore
+    sortArray.sort((a , b) => { return a.date - b.date})
+    sortArray.forEach((e) => {
+      // @ts-ignore
+      bodyArray.push([e.value.title, e.value.date, e.value.hour + ":" + e.value.minute]);
+    });
+    console.log(bodyArray); 
+    const date = new Date();
+    // const year = date.getUTCFullYear();
+    // const month = date.getUTCMonth() + 1;
+    // const dateDisplay = date.getUTCDate()
     const doc = new jsPDF();
-    doc.text(`Timetable - Generated on ${date.getUTCFullYear()}-${date.getUTCMonth() + 1}-${date.getUTCDate}`,10,10,{align: "center", horizontalScale: 5});
-    autoTable(doc, {startY: 20, head: [["Event Name", "Event Date", "Event Time"]], body: [bodyArray]});
-    const jsonString = JSON.stringify(data, null, 2);
-    const blob = doc.output("blob", )
+    doc.text(`Timetable - Generated on ${date.getUTCFullYear()}-${date.getUTCMonth() + 1 < 10
+      ? "0" + Number(date.getUTCMonth() + 1)
+      : date.getUTCMonth() + 1}-${date.getUTCDate() < 10
+        ? "0" + date.getUTCDate()
+        : date.getUTCDate()}`,15,10);
+    autoTable(doc, {startY: 20, head: [["Event Name", "Event Date", "Event Time"]], body: bodyArray});
+    const blob = doc.output("blob");
     const url = URL.createObjectURL(blob);
-    return url;
+    return url
   } catch (err) {
     return err;
   }

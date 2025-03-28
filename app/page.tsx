@@ -10,10 +10,11 @@ const stringToDisplayArray: string[] = stringToDisplay.split("");
 export default function Page() {
 
   async function handleButtonClick(e) {
+    console.log("Called button click")
     let data = await e.target.files[0].text()
     let parsedData = await JSON.parse(data)
     console.log(parsedData);
-    run(parsedData)
+    run(parsedData);
   }
 
   useEffect(() => {
@@ -47,7 +48,7 @@ export default function Page() {
   return (
     <div className="h-dvh w-dvw bg-gradient-to-tr to-blue-700 from-indigo-900 font-sans font-bold text-white justify-center items-center flex flex-col select-none">
       <div className="rounded-lg shadow-2xl shadow-neutral-800 w-fit h-fit justify-center items-center flex flex-col">
-        <h1 className="text-5xl p-10" id="textToRender"></h1>
+        <h1 className="text-5xl text-justify p-10" id="textToRender"></h1>
       </div>
       <button
         className="text-5xl p-10 rounded-lg shadow-2xl shadow-neutral-800 w-fit h-fit m-20 opacity-0 transition-color duration-300 hover:bg-gray-950"
@@ -58,7 +59,8 @@ export default function Page() {
       <input
         type="file"
         accept=".json"
-        onChange={(e) => {
+        onInput={(e) => {
+          console.log("Changed");
           handleButtonClick(e);
         }}
         className="hidden"

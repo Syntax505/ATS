@@ -1,0 +1,84 @@
+{
+  "events": [
+    {
+      "date": "2025-03-03",
+      "hour": "23",
+      "minute": "05",
+      "title": "Art Exhibition",
+      "duration": 180,
+      "memberIDs": ["1", "2", "3", "4", "5"]
+    },
+    {
+      "date": "2025-03-07",
+      "hour": "23",
+      "minute": "07",
+      "title": "Music Festival",
+      "duration": 240,
+      "memberIDs": ["1", "2", "4"]
+    },
+    {
+      "date": "2025-03-06",
+      "hour": "00",
+      "minute": "06",
+      "title": "Exploring Geography",
+      "duration": 60,
+      "memberIDs": ["2", "4"]
+    },
+    {
+      "date": "2025-02-27",
+      "hour": "15",
+      "minute": "29",
+      "title": "Coding Bootcamp",
+      "duration": 60,
+        "memberIDs": ["1", "2", "3", "5"]
+    },
+    {
+      "date": "2025-03-17",
+      "hour": "17",
+      "minute": "55",
+      "title": "History Lecture",
+      "duration": 120,
+        "memberIDs": ["1", "3", "4", "5"]
+    },
+    {
+      "date": "2025-02-26",
+      "hour": "13",
+      "minute": "14",
+      "title": "Exploring Geography",
+      "duration": 120,
+        "memberIDs": ["1", "2", "3", "5"]
+    },
+    {
+      "date": "2025-02-28",
+      "hour": "18",
+      "minute": "19",
+      "title": "Music Festival",
+      "duration": 300,
+        "memberIDs": ["1", "4", "5"]
+    },
+    {
+      "date": "2025-03-03",
+      "hour": "19",
+      "minute": "41",
+      "title": "Mathematics Workshop",
+      "duration": 30,
+        "memberIDs": ["1", "2", "5"]
+    },
+    {
+      "date": "2025-02-19",
+      "hour": "06",
+      "minute": "05",
+      "title": "Science Fair",
+      "duration": 60,
+        "memberIDs": ["1", "2", "4", "5"]
+    },
+    {
+      "date": "2025-02-27",
+      "hour": "03",
+      "minute": "25",
+      "title": "History Lecture",
+      "duration": 45,
+        "memberIDs": ["2", "3", "4", "5"]
+    }
+  ]
+}
