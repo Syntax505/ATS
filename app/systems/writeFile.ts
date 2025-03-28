@@ -27,7 +27,7 @@
     // const month = date.getUTCMonth() + 1;
     // const dateDisplay = date.getUTCDate()
     const doc = new jsPDF();
-    doc.text(`Timetable - Generated on ${date.getUTCFullYear()}-${date.getUTCMonth() + 1 < 10
+    doc.text(`Schedule - Generated on ${date.getUTCFullYear()}-${date.getUTCMonth() + 1 < 10
       ? "0" + Number(date.getUTCMonth() + 1)
       : date.getUTCMonth() + 1}-${date.getUTCDate() < 10
         ? "0" + date.getUTCDate()

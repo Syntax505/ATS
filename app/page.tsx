@@ -4,7 +4,7 @@ import React, { useEffect } from "react";
 import { run } from "../index";
 
 const stringToDisplay: string =
-  "Welcome to the Automatic Timetabling System. Upload your timetable file below to get started.";
+  "Welcome to the Automatic Timetabling System. Upload your schedule file below to get started.";
 const stringToDisplayArray: string[] = stringToDisplay.split("");
 
 export default function Page() {
