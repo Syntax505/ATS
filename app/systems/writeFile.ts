@@ -32,7 +32,7 @@
       : date.getUTCMonth() + 1}-${date.getUTCDate() < 10
         ? "0" + date.getUTCDate()
         : date.getUTCDate()}`,15,10);
-    autoTable(doc, {startY: 20, head: [["Event Name", "Event Date", "Event Time"]], body: bodyArray});
+    autoTable(doc, {startY: 20, head: [["Event Name", "Event Date", "Start Time"]], body: bodyArray});
     const blob = doc.output("blob");
     const url = URL.createObjectURL(blob);
     return url
