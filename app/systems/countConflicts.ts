@@ -54,6 +54,6 @@ export async function detectConflicts(data): Promise<ConflictResult> {
       }
     }
   }
-
+console.log(conflicts);
   return conflicts;
 }
